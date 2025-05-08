@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubham Portfolio</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="logo1.png" class="logo">
+                <ul class="sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="fas fa-times" onclick="closemenu()"></i>               
+                 </ul>
+                <i class="fas fa-bars" onclick="openmenu()"></i>
+            </nav>
+            <div class="header-text">
+                <p>Software Engineer</p>
+                <h1>Hi, I'm <span>Shubham</span><br>From India</h1>
+                <h2>Crafting Digital Solutions</h2>
+                <h3>
+                    I specialize in software design, web development, and building intuitive app interfaces.
+                    With a passion for innovation and clean code, I help businesses turn ideas into reality.
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="section-divider"></div>
+    <!-- ---------about---------- -->
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="user1.png" alt="User Image">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1>
+                    <p>I am Shubham Kumar, a passionate and dedicated B.Tech student specializing in Computer Science and Engineering at Sharda University, currently in my second year. I have a strong interest in software development, emerging technologies, and practical problem-solving. I'm consistently working on improving my technical skills through hands-on projects and continuous learning.</p>                    
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                        <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                        <p class="tab-links" onclick="opentab('education')">Education</p>
+                    </div>
+
+                    <!-- Only Skills will show without JS -->
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span>Software Engineer</span><br>Passionate about building efficient and scalable software</li>
+                            <li><span>Web Development</span><br>Designing responsive websites</li>
+                            <li><span>App Development</span><br>Building Android/iOS apps</li>
+                        </ul>
+                    </div>
+
+                    <!-- Hidden without JS -->
+                    <div class="tab-contents" id="experience">
+                        <ul>
+                            <li><span>2025 - Present</span><br>Software Engineer at CodSoft</li>
+                            <li><span>2024 - 2025</span><br>Web Developer at Unified Mentor</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-contents" id="education">
+                        <ul>
+                            <li><span>2023 - 2027</span><br>B.Tech CSE, Sharda University</li>
+                            <li><span>2021 - 2023</span><br>Graduation at Jamshedpur Co-operative College</li>
+                            <li><span>2010 - 2021</span><br>Schooling at Gayatri Shiksha Niketan, Jamshedpur</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div class="section-divider"></div>
+
+
+    <!-- ------------ services -------------  -->
+    <div id="services">
+        <div class="container">
+            <h1 class="sub-title">My Services</h1>
+            <div class="services-list">
+                <div>
+                    <i class="fa-solid fa-code"></i>
+                    <h2>Software Design</h2>
+                    <p> Scalable, maintainable, and efficient software architecture tailored to your requirements.</p>
+                    <a href="#">learn more</a>
+                </div>
+                <div>
+                    <i class="fa-solid fa-crop-simple"></i>
+                    <h2>Web Design</h2>
+                    <p>Visually engaging and responsive websites that offer an excellent user experience.</p>
+                    <a href="#">learn more</a>
+                </div>
+                <div>
+                    <i class="fa-brands fa-app-store"></i>
+                    <h2>App Design</h2>
+                    <p>User-friendly and modern mobile app interfaces for Android and iOS platforms.</p>
+                    <a href="#">learn more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-divider"></div>
+
+    <!-- ----------- portfolio ------------  -->
+     <div id="portfolio">
+        <div class="container">
+            <h1 class="sub-title">My Work</h1>
+            <div class="work-list">
+                <div class="work">
+                    <img src="work-1.png">
+                    <div class="layer">
+                        <h3>Window Assistant</h3>
+                        <p>An AI-based desktop assistant that responds to voice and text commands, performs tasks, and provides real-time responses using Python and Flask.</p>
+                        <!-- <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a> -->
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="work-2.png">
+                    <div class="layer">
+                        <h3>Portfolio Website</h3>
+                        <p>A responsive personal portfolio showcasing skills, projects, and contact info using HTML, CSS, and JavaScript.</p>
+                        <!-- <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a> -->
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="work-3.png">
+                    <div class="layer">
+                        <h3>Netflix Clone</h3>
+                        <p>A web-based OTT platform inspired by Netflix, built with React for the frontend and Node.js backend (in progress).</p>
+                        <!-- <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a> -->
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="btn">See more</a>
+        </div>
+    </div>
+    <div class="section-divider"></div>
+
+     <!-- ----------- contact -----------  -->
+     <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p>2023286582.shubham@ug.sharda.ac.in</p>
+                    <p>&#9742; +91-7858024086</p>
+                    <div class="social-icons">
+                        <a href=""><i class="fa-brands fa-instagram"></i></a>
+                        <a href=""><i class="fa-brands fa-twitter-square"></i></a>
+                        <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                    <div class="vertical-links">
+                        <a href="Resume.pdf" download class="btn btn2">Download Resume</a>
+                        <a href="https://github.com/shubhamkumar785" target="_blank" class="btn btn2">GitHub</a>
+                        <a href="https://www.linkedin.com/in/shubham-kumar-5a85032a6/" target="_blank" class="btn btn2">LinkedIn</a>
+                        <a href="https://leetcode.com/u/shubham_kumar_001/" target="_blank" class="btn btn2">LeetCode</a>
+                    </div>      
+                </div>
+                <div class="contact-right">
+                    <form class="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="your Email" required>
+                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn btn2">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; Copyright Shubham Pathak 2025. All rights reserved.</p>
+        </div>
+    </div>
+    
+
+
+    
+</body>
+
+<script src="index.js"></script>
+</html>
