@@ -33,3 +33,12 @@ function closemenu(){
       .then(response => console.log('Success!', response))
       .catch(error => console.error('Error!', error.message))
   })
+
+    function openmenu() {
+        document.querySelector('.sidemenu').classList.add('active');
+    }
+
+    function closemenu() {
+        document.querySelector('.sidemenu').classList.remove('active');
+    }
+
