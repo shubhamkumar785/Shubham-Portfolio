@@ -329,6 +329,14 @@ nav{
     color: #ff004f;
     transform: translateY(-5px);
 }
+
+.vertical-links {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
 .btn.btn2 {
     display: inline-block;
     background-color: #ff004f;
@@ -341,6 +349,8 @@ nav{
     border: 2px solid transparent;
     transition: all 0.3s ease;
     cursor: pointer;
+    text-align: center;
+    width: fit-content;
 }
 
 .btn.btn2:hover {
@@ -508,6 +518,16 @@ nav {
 
     .contact-left, .contact-right {
         flex-basis: 100%;
+    }
+
+    .vertical-links {
+        margin-top: 20px;
+        align-items: center;
+    }
+
+    .vertical-links .btn.btn2 {
+        width: 200px;
+        text-align: center;
     }
 
     .copyright {
