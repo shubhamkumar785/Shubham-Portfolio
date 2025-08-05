@@ -3,195 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shubham Portfolio</title>
+    <meta name="description" content="Shubham Kumar - Software Engineer & Frontend Developer Portfolio. Showcasing projects, skills, and experience in web development.">
+    <meta name="keywords" content="Software Engineer, Frontend Developer, Web Developer, Portfolio, JavaScript, HTML, CSS, React">
+    <meta name="author" content="Shubham Kumar">
+    <meta name="theme-color" content="#ff004f">
+    <meta name="robots" content="index, follow">
+    <title>Shubham Kumar - Software Engineer Portfolio</title>
     <link rel="icon" type="image/png" href="logo1.png">
+    <link rel="apple-touch-icon" href="logo1.png">
 
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style">
+    <link rel="preload" href="index.css" as="style">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="index.css">
     <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
-    <div id="header">
-        <div class="container">
-            <nav>
-                <img src="logo1.png" class="logo">
-                <ul class="sidemenu">
-                    <li><a href="#header">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Work</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <i class="fas fa-times" onclick="closemenu()"></i>               
-                 </ul>
-                <i class="fas fa-bars" onclick="openmenu()"></i>
-            </nav>
-            <div class="header-text">
-                <p>Software Engineer / Frontend Developer</p>
-                <h1>Hi, I'm <span>Shubham</span><br>and I'm a Passionate<br> Software Engineer</h1>
-                <h2>Crafting Digital Solutions</h2>
-                <h3>
-                    I specialize in software design, web development, and building intuitive app interfaces.
-                    With a passion for innovation and clean code, I help businesses turn ideas into reality.
-                </h3>
-            </div>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader">
+            <div class="loader-text">Loading...</div>
         </div>
     </div>
+
+    <!-- Header Section -->
+    <header id="header" role="banner">
+        <div class="container">
+            <nav role="navigation" aria-label="Main navigation">
+                <img src="logo1.png" class="logo" alt="Shubham Kumar Logo">
+                <ul class="sidemenu" role="menubar">
+                    <li role="none"><a href="#header" role="menuitem" aria-label="Go to Home section">Home</a></li>
+                    <li role="none"><a href="#about" role="menuitem" aria-label="Go to About section">About</a></li>
+                    <li role="none"><a href="#services" role="menuitem" aria-label="Go to Services section">Services</a></li>
+                    <li role="none"><a href="#portfolio" role="menuitem" aria-label="Go to Portfolio section">Work</a></li>
+                    <li role="none"><a href="#contact" role="menuitem" aria-label="Go to Contact section">Contact</a></li>
+                    <li role="none"><i class="fas fa-times" onclick="closemenu()" aria-label="Close menu" tabindex="0" role="button"></i></li>
+                </ul>
+                <i class="fas fa-bars" onclick="openmenu()" aria-label="Open menu" tabindex="0" role="button"></i>
+            </nav>
+            <div class="header-text">
+                <p class="subtitle">Software Engineer / Frontend Developer</p>
+                <h1>Hi, I'm <span class="highlight">Shubham</span><br>and I'm a Passionate<br> Software Engineer</h1>
+                <h2 class="tagline">Crafting Digital Solutions</h2>
+                <p class="description">
+                    I specialize in software design, web development, and building intuitive app interfaces.
+                    With a passion for innovation and clean code, I help businesses turn ideas into reality.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#portfolio" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
     <div class="section-divider"></div>
-    <!-- ---------about---------- -->
-    <div id="about">
+
+    <!-- About Section -->
+    <section id="about" aria-labelledby="about-title">
         <div class="container">
             <div class="row">
                 <div class="about-col-1">
-                    <img src="user1.png" alt="User Image">
+                    <img src="user1.png" alt="Shubham Kumar - Professional Photo" loading="lazy">
                 </div>
                 <div class="about-col-2">
-                    <h1 class="sub-title">About Me</h1>
+                    <h2 id="about-title" class="sub-title">About Me</h2>
                     <p>I am Shubham Kumar, a passionate and dedicated B.Tech student specializing in Computer Science and Engineering at Sharda University, currently in my second year. I have a strong interest in software development, emerging technologies, and practical problem-solving. I'm consistently working on improving my technical skills through hands-on projects and continuous learning.</p>                    
-                    <div class="tab-titles">
-                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
-                        <p class="tab-links" onclick="opentab('experience')">Experience</p>
-                        <p class="tab-links" onclick="opentab('education')">Education</p>
+                    
+                    <div class="tab-titles" role="tablist">
+                        <button class="tab-links active-link" onclick="opentab('skills')" role="tab" aria-selected="true" aria-controls="skills" id="skills-tab">Skills</button>
+                        <button class="tab-links" onclick="opentab('experience')" role="tab" aria-selected="false" aria-controls="experience" id="experience-tab">Experience</button>
+                        <button class="tab-links" onclick="opentab('education')" role="tab" aria-selected="false" aria-controls="education" id="education-tab">Education</button>
                     </div>
 
-                    <!-- Only Skills will show without JS -->
-                    <div class="tab-contents active-tab" id="skills">
+                    <div class="tab-contents active-tab" id="skills" role="tabpanel" aria-labelledby="skills-tab">
                         <ul>
-                            <li><span>Software Engineer</span><br>Passionate about building efficient and scalable software</li>
-                            <li><span>Web Development</span><br>Designing responsive websites</li>
-                            <li><span>Java Developer</span><br>Building robust backend systems, RESTful APIs, and Android applications using Java, Spring Boot, and modern development practices.</li>
+                            <li><span>Software Engineer</span><br>Passionate about building efficient and scalable software solutions</li>
+                            <li><span>Web Development</span><br>Designing responsive and modern websites with best practices</li>
+                            <li><span>Java Developer</span><br>Building robust backend systems, RESTful APIs, and Android applications using Java, Spring Boot, and modern development practices</li>
                         </ul>
                     </div>
 
-                    <!-- Hidden without JS -->
-                    <div class="tab-contents" id="experience">
+                    <div class="tab-contents" id="experience" role="tabpanel" aria-labelledby="experience-tab">
                         <ul>
                             <li><span>2025 - Present (Intern)</span><br>Software Engineer at CodSoft</li>
                             <li><span>2024 - 2025 (Intern)</span><br>Web Developer at Unified Mentor</li>
                         </ul>
                     </div>
 
-                    <div class="tab-contents" id="education">
+                    <div class="tab-contents" id="education" role="tabpanel" aria-labelledby="education-tab">
                         <ul>
                             <li><span>2023 - 2027</span><br>B.Tech CSE, Sharda University</li>
                             <li><span>2021 - 2023</span><br>Intermediate at Jamshedpur Co-operative College</li>
                             <li><span>2010 - 2021</span><br>Schooling at Gayatri Shiksha Niketan, Jamshedpur</li>
                         </ul>
                     </div>
-
                 </div>
             </div>
         </div>
-    </div> 
+    </section>
+
     <div class="section-divider"></div>
 
-
-    <!-- ------------ services -------------  -->
-    <div id="services">
+    <!-- Services Section -->
+    <section id="services" aria-labelledby="services-title">
         <div class="container">
-            <h1 class="sub-title">My Services</h1>
+            <h2 id="services-title" class="sub-title">My Services</h2>
             <div class="services-list">
-                <div>
-                    <i class="fa-solid fa-code"></i>
-                    <h2>Software Design</h2>
-                    <p> Scalable, maintainable, and efficient software architecture tailored to your requirements.</p>
-                    <a href="" target="_blank"> <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                </div>
-                <div>
-                    <i class="fa-solid fa-crop-simple"></i>
-                    <h2>Web Design</h2>
+                <article class="service-card">
+                    <i class="fa-solid fa-code" aria-hidden="true"></i>
+                    <h3>Software Design</h3>
+                    <p>Scalable, maintainable, and efficient software architecture tailored to your requirements.</p>
+                    <a href="#contact" class="service-link" aria-label="Contact for Software Design services">
+                        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
+                </article>
+                <article class="service-card">
+                    <i class="fa-solid fa-crop-simple" aria-hidden="true"></i>
+                    <h3>Web Design</h3>
                     <p>Visually engaging and responsive websites that offer an excellent user experience.</p>
-                    <a href="" target="_blank"> <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                </div>
-                <!-- <div>
-                    <i class="fa-brands fa-app-store"></i>
-                    <h2>App Design</h2>
+                    <a href="#contact" class="service-link" aria-label="Contact for Web Design services">
+                        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
+                </article>
+                <article class="service-card">
+                    <i class="fa-brands fa-app-store" aria-hidden="true"></i>
+                    <h3>App Development</h3>
                     <p>User-friendly and modern mobile app interfaces for Android and iOS platforms.</p>
-                    <a href="#">learn more</a>
-                </div> -->
+                    <a href="#contact" class="service-link" aria-label="Contact for App Development services">
+                        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
+                </article>
             </div>
         </div>
-    </div>
+    </section>
+
     <div class="section-divider"></div>
 
-    <!-- ----------- portfolio ------------  -->
-     <div id="portfolio">
+    <!-- Portfolio Section -->
+    <section id="portfolio" aria-labelledby="portfolio-title">
         <div class="container">
-            <h1 class="sub-title">My Work</h1>
+            <h2 id="portfolio-title" class="sub-title">My Work</h2>
             <div class="work-list">
-                <div class="work">
-                    <img src="work-1.png">
+                <article class="work">
+                    <img src="work-1.png" alt="Weather Application Screenshot" loading="lazy">
                     <div class="layer">
                         <h3>Weather Application</h3>
-                        <p>Created a weather application using HTML, CSS, and JavaScript that fetches real-time weather data using a  WeatherAPI. Users can search any city to view current temperature, humidity, and conditions.</p>
-                        <!-- <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a> -->
-                         <a href="https://shubhamkumar785.github.io/WeatherApp/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <p>Created a weather application using HTML, CSS, and JavaScript that fetches real-time weather data using WeatherAPI. Users can search any city to view current temperature, humidity, and conditions.</p>
+                        <a href="https://shubhamkumar785.github.io/WeatherApp/" target="_blank" rel="noopener noreferrer" aria-label="View Weather Application project">
+                            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                        </a>
                     </div>
-                </div>
-                <div class="work">
-                    <img src="work-2.png">
+                </article>
+                <article class="work">
+                    <img src="work-2.png" alt="Portfolio Website Screenshot" loading="lazy">
                     <div class="layer">
                         <h3>Portfolio Website</h3>
                         <p>A responsive personal portfolio showcasing skills, projects, and contact info using HTML, CSS, and JavaScript.</p>
-                        <!-- <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a> -->
-                         <a href="https://shubhamkumar785.github.io/Shubham-Portfolio/" target="_blank"> <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <a href="https://shubhamkumar785.github.io/Shubham-Portfolio/" target="_blank" rel="noopener noreferrer" aria-label="View Portfolio Website project">
+                            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                        </a>
                     </div>
-                </div>
-                <div class="work">
-                    <img src="work-3.png">
+                </article>
+                <article class="work">
+                    <img src="work-3.png" alt="To-Do List Application Screenshot" loading="lazy">
                     <div class="layer">
                         <h3>To-DO List</h3>
                         <p>Built a simple and responsive To-Do List using HTML, CSS, and JavaScript. Features include task addition, editing, deletion, completion marking, and data persistence with local storage.</p>
-                        <!-- <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a> -->
-                         <a href="https://shubhamkumar785.github.io/To-Do-List/" target="_blank"> <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <a href="https://shubhamkumar785.github.io/To-Do-List/" target="_blank" rel="noopener noreferrer" aria-label="View To-Do List project">
+                            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                        </a>
                     </div>
-                </div>
+                </article>
             </div>
-            <a href="#" class="btn">See more</a>
+            <a href="#contact" class="btn btn-primary">See More Projects</a>
         </div>
-    </div>
+    </section>
+
     <div class="section-divider"></div>
 
-     <!-- ----------- contact -----------  -->
-     <div id="contact">
+    <!-- Contact Section -->
+    <section id="contact" aria-labelledby="contact-title">
         <div class="container">
             <div class="row">
                 <div class="contact-left">
-                    <h1 class="sub-title">Contact Me</h1>
-                    <p>2023286582.shubham@ug.sharda.ac.in</p>
-                    <p>&#9742; +91-7858024086</p>
-                    <div class="social-icons">
-                        <a href="https://www.instagram.com/shubhxm._/"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://x.com/Shubham40675702"><i class="fa-brands fa-twitter-square"></i></a>
-                        <a href="https://www.linkedin.com/in/shubham-kumar-5a85032a6/"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+                    <h2 id="contact-title" class="sub-title">Contact Me</h2>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope" aria-hidden="true"></i> 2023286582.shubham@ug.sharda.ac.in</p>
+                        <p><i class="fas fa-phone" aria-hidden="true"></i> +91-7858024086</p>
+                    </div>
+                    <div class="social-icons" role="list" aria-label="Social media links">
+                        <a href="https://www.instagram.com/shubhxm._/" target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram" role="listitem">
+                            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://x.com/Shubham40675702" target="_blank" rel="noopener noreferrer" aria-label="Follow on Twitter" role="listitem">
+                            <i class="fa-brands fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/shubham-kumar-5a85032a6/" target="_blank" rel="noopener noreferrer" aria-label="Connect on LinkedIn" role="listitem">
+                            <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Follow on Facebook" role="listitem">
+                            <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                        </a>
                     </div>
                     <div class="vertical-links">
-                        <a href="PersonalResume-1.pdf" download class="btn btn2">Download Resume</a>
-                        <a href="https://github.com/shubhamkumar785" target="_blank" class="btn btn2">GitHub</a>
-                        <a href="https://www.linkedin.com/in/shubham-kumar-5a85032a6/" target="_blank" class="btn btn2">LinkedIn</a>
-                        <a href="https://leetcode.com/u/shubham_kumar_001/" target="_blank" class="btn btn2">LeetCode</a>
+                        <a href="PersonalResume-1.pdf" download class="btn btn2" aria-label="Download Resume PDF">
+                            <i class="fas fa-download" aria-hidden="true"></i> Download Resume
+                        </a>
+                        <a href="https://github.com/shubhamkumar785" target="_blank" rel="noopener noreferrer" class="btn btn2" aria-label="Visit GitHub profile">
+                            <i class="fab fa-github" aria-hidden="true"></i> GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/in/shubham-kumar-5a85032a6/" target="_blank" rel="noopener noreferrer" class="btn btn2" aria-label="Visit LinkedIn profile">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn
+                        </a>
+                        <a href="https://leetcode.com/u/shubham_kumar_001/" target="_blank" rel="noopener noreferrer" class="btn btn2" aria-label="Visit LeetCode profile">
+                            <i class="fas fa-code" aria-hidden="true"></i> LeetCode
+                        </a>
                     </div>      
                 </div>
                 <div class="contact-right">
-                    <form class="submit-to-google-sheet">
-                        <input type="text" name="Name" placeholder="Your Name" required>
-                        <input type="email" name="email" placeholder="your Email" required>
-                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
-                        <button type="submit" class="btn btn2">Submit</button>
+                    <form class="submit-to-google-sheet" novalidate>
+                        <div class="form-group">
+                            <label for="name" class="sr-only">Your Name</label>
+                            <input type="text" id="name" name="Name" placeholder="Your Name" required aria-required="true">
+                            <span class="error-message" id="name-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="sr-only">Your Email</label>
+                            <input type="email" id="email" name="email" placeholder="Your Email" required aria-required="true">
+                            <span class="error-message" id="email-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="sr-only">Your Message</label>
+                            <textarea id="message" name="Message" rows="6" placeholder="Your Message" required aria-required="true"></textarea>
+                            <span class="error-message" id="message-error"></span>
+                        </div>
+                        <button type="submit" class="btn btn2">
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i> Send Message
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="copyright">
-            <p>&copy; Copyright Shubham Pathak 2025. All rights reserved.</p>
-        </div>
-    </div>
-    
+        <footer class="copyright" role="contentinfo">
+            <p>&copy; Copyright Shubham Kumar 2025. All rights reserved.</p>
+        </footer>
+    </section>
 
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top" title="Back to top">
+        <i class="fas fa-chevron-up" aria-hidden="true"></i>
+    </button>
 
-    
+    <script src="index.js"></script>
 </body>
-
-<script src="index.js"></script>
 </html>
