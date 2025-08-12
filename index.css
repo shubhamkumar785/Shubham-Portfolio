@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: 'poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
 }
 html{
@@ -10,7 +10,6 @@ html{
 body{
     background: #080808;
     color: #fff;
-
 }
 #header{
     width: 100%;
@@ -22,20 +21,18 @@ body{
 .container{
     padding: 10px 10%;
 }
+/* Logo: keep within normal flow for responsiveness */
 .logo {
-    height: 100px; /* Adjust size as needed */
+    height: 64px;
     width: auto;
     display: block;
-    position: absolute;
-    top: 15px;
-    left: 220px;
 }
 nav ul.sidemenu {
     list-style: none;
     display: flex;
     gap: 30px;
     margin-left: auto;
-    margin-top: 30px; /* 👈 Adds vertical spacing from the top */
+    margin-top: 30px;
 }
 
 nav ul.sidemenu li a {
@@ -46,7 +43,7 @@ nav ul.sidemenu li a {
 }
 
 nav ul.sidemenu li a:hover {
-    color: #ff004f; /* or any color you prefer */
+    color: #ff004f;
 }
 
 nav{
@@ -66,8 +63,8 @@ nav{
 }
 .header-text h2 {
     font-size: 24px;
-    margin-top: 20px; /* 👈 Add spacing */
-    color: #ccc; /* Optional for contrast */
+    margin-top: 20px;
+    color: #ccc;
 }
 .header-text h3 {
     font-size: 14px;
@@ -147,13 +144,8 @@ nav{
 }
 
 /* Tab Content */
-.tab-contents {
-    display: none;
-}
-
-.tab-contents.active-content {
-    display: block;
-}
+.tab-contents { display: none; }
+.tab-contents.active-tab { display: block; }
 
 .tab-contents ul li {
     list-style: none;
@@ -164,16 +156,8 @@ nav{
     color: #ff004f;
     font-size: 14px;
 }
-.tab-contents{
-    display: none;
-}
-.tab-contents.active-tab{
-    display: block;
-}
-
 
 /* ----------- services ------------  */
-
 #services{
     padding: 30px 0;
 }
@@ -269,54 +253,37 @@ nav{
   font-size: 20px;
   transition: transform 0.3s ease;
 }
-
 .layer a:hover {
   transform: scale(1.1);
   background: #ff004f;
   color: white;
 }
+.work:hover img{ transform: scale(1.1); }
+.work:hover .layer{ height: 100%; }
 
-.work:hover img{
-    transform: scale(1.1);
-}
-.work:hover .layer{
-    height: 100%;
-}
 .btn {
     display: block;
     margin: 50px auto;
     width: fit-content;
-    border: none; /* 👈 fixed here */
+    border: none;
     padding: 14px 50px;
     border-radius: 6px;
     color: #fff;
-    background: #ff004f; /* 👈 give it a background so it looks like a button */
+    background: #ff004f;
     cursor: pointer;
 }
 .btn:hover {
     background: transparent;
     color: #ff004f;
-    border: 1px solid #ff004f; /* 👈 Optional: only if you want border on hover */
+    border: 1px solid #ff004f;
 }
 
 /* --------------- contact -----------   */
-.contact-left{
-    flex-basis: 35%;
-}
-.contact-right{
-    flex-basis: 60%;
-}
-.conatct-left p{
-    margin-top: 30px;
-}
-.contact-leftp{
-    color: #ff004f;
-    margin-right: 15px;
-    font-size: 25px;
-}
-.social-icons{
-    margin-top: 30px;
-}
+.contact-left{ flex-basis: 35%; }
+.contact-right{ flex-basis: 60%; }
+.conatct-left p{ margin-top: 30px; }
+.contact-leftp{ color: #ff004f; margin-right: 15px; font-size: 25px; }
+.social-icons{ margin-top: 30px; }
 .social-icons a{
     text-decoration: none;
     font-size: 30px;
@@ -325,10 +292,8 @@ nav{
     display: inline-block;
     transition: transform 0.5s;
 }
-.social-icons a:hover{
-    color: #ff004f;
-    transform: translateY(-5px);
-}
+.social-icons a:hover{ color: #ff004f; transform: translateY(-5px); }
+
 .btn.btn2 {
     display: inline-block;
     background-color: #ff004f;
@@ -342,16 +307,9 @@ nav{
     transition: all 0.3s ease;
     cursor: pointer;
 }
+.btn.btn2:hover { background-color: transparent; color: #ff004f; border: 2px solid #ff004f; }
 
-.btn.btn2:hover {
-    background-color: transparent;
-    color: #ff004f;
-    border: 2px solid #ff004f;
-}
-
-.contact-right form{
-    width: 100%;
-}
+.contact-right form{ width: 100%; }
 form input, form textarea{
     width: 100%;
     border: 0;
@@ -363,12 +321,7 @@ form input, form textarea{
     font-size: 18px;
     border-radius: 6px;
 }
-form .btn2{
-    padding: 14px 60px;
-    font-size: 18px;
-    margin-top: 20px;
-    cursor: pointer;
-}
+form .btn2{ padding: 14px 60px; font-size: 18px; margin-top: 20px; cursor: pointer; }
 .copyright{
     width: 100%;
     text-align: center;
@@ -377,9 +330,7 @@ form .btn2{
     font-weight: 300;
     margin-top: 20px;
 }
-.copyright i{
-    color: #ff004f;
-}
+.copyright i{ color: #ff004f; }
 .section-divider {
     width: 90%;
     height: 1px;
@@ -388,17 +339,10 @@ form .btn2{
     border: none;
 }
 
+/* ===== Navigation icons (desktop hidden) ===== */
+nav .fas { display: none; }
 
-
-/* --------------------- CSS for small screen like phone------------  */
-/* --------------------- CSS for small screen like phones ------------ */
-/* Base styles */
-/* ===== Base Styles ===== */
-
-nav .fas {
-    display: none; /* desktop: hidden */
-}
-  
+/* ===== Small screens ===== */
 @media only screen and (max-width: 600px) {
     #header {
         background: url("background.png") no-repeat center center/cover;
@@ -411,106 +355,46 @@ nav .fas {
         padding: 0;
     }
 
-    .container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-    }
+    .container { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; }
 
-nav {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 0;
-}
+    nav { flex-direction: column; align-items: center; padding: 10px 0; }
 
-.logo {
-    height: 60px;
-    display: block;
-    margin: 0 auto 20px auto; /* centers the logo */
-}
+    .logo { height: 60px; display: block; margin: 0 auto 20px auto; }
 
-    nav ul {
+    /* Slide-in side menu */
+    .sidemenu {
         flex-direction: column;
         background: #111;
         position: fixed;
         top: 0;
-        right: -100%;
-        width: 200px;
+        right: -240px;
+        width: 240px;
         height: 100vh;
         padding-top: 60px;
         gap: 15px;
         text-align: center;
         transition: right 0.4s ease;
+        z-index: 1000;
     }
 
-    nav ul.show {
-        right: 0;
-    }
+    /* show hamburger and close icons on mobile */
+    nav .fas { display: block; color: white; font-size: 24px; cursor: pointer; }
+    .sidemenu .fa-times { position: absolute; top: 20px; right: 20px; }
 
-    nav .fas {
-        display: none; /* show on mobile via media query */
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-    }
+    .header-text { color: #fff; font-size: 18px; max-width: 90%; text-align: center; margin: 0; }
+    .header-text h1 { font-size: 30px; margin: 10px 0; }
+    .header-text h3{ font-size: 13px; }
 
-    .header-text {
-        color: #fff;
-        font-size: 18px;
-        max-width: 90%;
-        text-align: center;
-        margin: 0; /* Important: no extra margin */
-    }
+    .sub-title { font-size: 40px; text-align: center; margin: 20px 0; }
 
-    .header-text h1 {
-        font-size: 30px;
-        margin: 10px 0;
-    }
-    .header-text h3{
-        font-size: 13px;
-    }
+    .about-col-1, .about-col-2 { flex-basis: 100%; }
+    .about-col-1 { margin-bottom: 30px; }
+    .about-col-1 img { width: 65%; max-width: 250px; border-radius: 16px; display: block; margin: 0 auto 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
 
+    .about-col-2 { font-size: 14px; }
 
+    .tab-links { font-size: 16px; margin-right: 20px; }
 
-    .sub-title {
-        font-size: 40px;
-        text-align: center;
-        margin: 20px 0;
-    }
-
-    .about-col-1, .about-col-2 {
-        flex-basis: 100%;
-    }
-
-    .about-col-1 {
-        margin-bottom: 30px;
-    }
-    .about-col-1 img {
-    width: 65%;              /* Reduce image size */
-    max-width: 250px;        /* Prevent it from being too large */
-    border-radius: 16px;     /* Rounded corners */
-    display: block;
-    margin: 0 auto 20px;     /* Center + spacing below */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Optional shadow */
-}
-
-
-    .about-col-2 {
-        font-size: 14px;
-    }
-
-    .tab-links {
-        font-size: 16px;
-        margin-right: 20px;
-    }
-
-    .contact-left, .contact-right {
-        flex-basis: 100%;
-    }
-
-    .copyright {
-        font-size: 14px;
-    }
+    .contact-left, .contact-right { flex-basis: 100%; }
+    .copyright { font-size: 14px; }
 }

@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shubham Portfolio</title>
     <link rel="icon" type="image/png" href="logo1.png">
+    <meta name="theme-color" content="#080808">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="index.css">
@@ -15,16 +19,16 @@
     <div id="header">
         <div class="container">
             <nav>
-                <img src="logo1.png" class="logo">
-                <ul class="sidemenu">
+                <img src="logo1.png" class="logo" alt="Shubham logo">
+                <ul id="sidemenu" class="sidemenu" role="menu" aria-label="Primary">
                     <li><a href="#header">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#portfolio">Work</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <i class="fas fa-times" onclick="closemenu()"></i>               
+                    <i class="fas fa-times" aria-label="Close menu" onclick="closemenu()"></i>               
                  </ul>
-                <i class="fas fa-bars" onclick="openmenu()"></i>
+                <i class="fas fa-bars" aria-label="Open menu" onclick="openmenu()"></i>
             </nav>
             <div class="header-text">
                 <p>Software Engineer / Java Developer</p>
@@ -43,15 +47,15 @@
         <div class="container">
             <div class="row">
                 <div class="about-col-1">
-                    <img src="user1.png" alt="User Image">
+                    <img src="user1.png" alt="Portrait of Shubham" loading="lazy">
                 </div>
                 <div class="about-col-2">
                     <h1 class="sub-title">About Me</h1>
                     <p>I am Shubham Kumar, a passionate and dedicated B.Tech student specializing in Computer Science and Engineering at Sharda University, currently in my second year. I have a strong interest in software development, emerging technologies, and practical problem-solving. I'm consistently working on improving my technical skills through hands-on projects and continuous learning.</p>                    
                     <div class="tab-titles">
-                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
-                        <p class="tab-links" onclick="opentab('experience')">Experience</p>
-                        <p class="tab-links" onclick="opentab('education')">Education</p>
+                        <p class="tab-links active-link" onclick="opentab(event, 'skills')">Skills</p>
+                        <p class="tab-links" onclick="opentab(event, 'experience')">Experience</p>
+                        <p class="tab-links" onclick="opentab(event, 'education')">Education</p>
                     </div>
 
                     <!-- Only Skills will show without JS -->
@@ -120,7 +124,7 @@
             <h1 class="sub-title">My Work</h1>
             <div class="work-list">
                 <div class="work">
-                    <img src="work-1.png">
+                    <img src="work-1.png" alt="Weather Application preview" loading="lazy">
                     <div class="layer">
                         <h3>Weather Application</h3>
                         <p>Created a weather application using HTML, CSS, and JavaScript that fetches real-time weather data using a  WeatherAPI. Users can search any city to view current temperature, humidity, and conditions.</p>
@@ -129,7 +133,7 @@
                     </div>
                 </div>
                 <div class="work">
-                    <img src="work-2.png">
+                    <img src="work-2.png" alt="Portfolio Website preview" loading="lazy">
                     <div class="layer">
                         <h3>Portfolio Website</h3>
                         <p>A responsive personal portfolio showcasing skills, projects, and contact info using HTML, CSS, and JavaScript.</p>
@@ -138,7 +142,7 @@
                     </div>
                 </div>
                 <div class="work">
-                    <img src="work-3.png">
+                    <img src="work-3.png" alt="To-Do List App preview" loading="lazy">
                     <div class="layer">
                         <h3>To-DO List</h3>
                         <p>Built a simple and responsive To-Do List using HTML, CSS, and JavaScript. Features include task addition, editing, deletion, completion marking, and data persistence with local storage.</p>
@@ -147,7 +151,7 @@
                     </div>
                 </div>
                  <div class="work">
-                   <img src="work-1.png">
+                   <img src="work-1.png" alt="Calculator App preview" loading="lazy">
                    <div class="layer">
                         <h3>Calculator App</h3>
                        <p>A simple and interactive Calculator application built using Java Swing. It performs basic arithmetic operations and features a clean, custom-designed GUI layout. This project demonstrates core Java concepts including event handling, Swing components, and object-oriented programming.</p>
