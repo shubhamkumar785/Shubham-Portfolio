@@ -48,11 +48,13 @@
     display: flex;
     transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     gap: 40px;
+    will-change: transform;
 }
 
 /* Card Design */
 .testimonial-card {
-    min-width: calc(50% - 20px); /* Defaulting to 2 cards per view on desktop for better readability */
+    min-width: calc(50% - 20px);
+    /* Defaulting to 2 cards per view on desktop for better readability */
     background: #111;
     border: 1px solid rgba(0, 255, 136, 0.1);
     border-radius: 24px;
@@ -230,38 +232,85 @@
 }
 
 /* Responsive */
-@media (max-width: 1200px) {
+@media (max-width: 992px) {
     .testimonials {
         padding: 80px 5%;
     }
-}
 
-@media (max-width: 992px) {
-    .testimonial-card {
-        min-width: 100%;
-        min-height: auto;
-        padding: 35px;
+    .testimonials-container {
+        max-width: 100%;
     }
-    
-    .testimonials-header h2 {
-        font-size: 2.8rem;
+
+    .testimonial-card {
+        padding: 35px;
     }
 }
 
 @media (max-width: 768px) {
     .testimonials {
-        padding: 60px 5%;
+        padding: 60px 16px 40px; /* Consistent padding */
     }
-    
+
+    .testimonials-header {
+        margin-bottom: 40px;
+    }
+
     .testimonials-header h2 {
         font-size: 2.2rem;
     }
-    
-    .slider-btn {
-        display: none; /* Hide arrows on mobile for cleaner look */
+
+    .testimonials-header p {
+        font-size: 1rem;
     }
-    
+
+    .testimonials-slider-wrapper {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .testimonials-track-container {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .testimonials-track {
+        gap: 0;
+    }
+
+    .testimonial-card {
+        min-width: 100%;
+        flex-shrink: 0;
+        padding: 24px 20px;
+        min-height: auto;
+        text-align: center;
+    }
+
+    .slider-btn {
+        display: none;
+    }
+
     .message {
+        font-size: 1.05rem;
+        margin-bottom: 25px;
+    }
+
+    .client-info {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .client-img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .client-details .name {
         font-size: 1.1rem;
+    }
+
+    .testimonial-meta {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
     }
 }

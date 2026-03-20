@@ -16,13 +16,20 @@
     box-sizing: border-box;
 }
 
-body {
+html, body {
     background-color: var(--bg-color);
     color: var(--text-primary);
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
+    width: 100%;
     min-height: 100vh;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 .jetbrains-mono {
@@ -253,9 +260,11 @@ body {
         opacity: 0;
         transform: translateY(-5px);
     }
+
     20% {
         opacity: 1;
     }
+
     100% {
         opacity: 0;
         transform: translateY(15px);
@@ -498,6 +507,7 @@ h1 .highlight {
     font-size: 0.95rem;
     color: #e6e6e6;
     height: 400px;
+    overflow-y: auto;
 }
 
 .line {
@@ -536,55 +546,258 @@ h1 .highlight {
 /* Responsive */
 @media (max-width: 1100px) {
     h1 {
-        font-size: 3.5rem;
+        font-size: 3.2rem;
     }
 
     .hero {
-        flex-direction: column;
-        text-align: left;
-        padding: 10% 5%;
-    }
-
-    .hero-visual {
-        justify-content: center;
-        width: 100%;
-    }
-
-    .terminal-window {
-        max-width: 100%;
+        padding: 0 5%;
+        gap: 2rem;
     }
 }
 
 @media (max-width: 992px) {
     .nav-links {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Stack hero at tablet too — fixes zoom-out left-half-only issue */
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 100px 30px 50px;
+        gap: 2rem;
+        min-height: auto;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hero-content {
+        flex: none;
+        max-width: 600px;
+        width: 100%;
+    }
+
+    .hero-visual {
+        flex: none;
+        width: 100%;
+        max-width: 600px;
+        justify-content: center;
+    }
+
+    .terminal-window {
+        max-width: 100%;
+        animation: none;
+    }
+
+    h1 {
+        white-space: normal;
+        font-size: 3rem;
+    }
+
+    .cta-group {
+        justify-content: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .description {
+        max-width: 100%;
+        margin: 0 auto 2rem;
+    }
+
+    .scroll-indicator {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+    }
+
+    .mobile-hide {
+        display: none !important;
+    }
+
+    .header {
+        padding: 15px 0;
+    }
+
+    .nav-wrapper {
+        border-radius: 20px;
+        width: calc(100% - 32px);
+        margin: 0 16px;
+        padding: 6px 10px;
+    }
+
+    .navbar {
+        padding: 0 4px;
+    }
+
+    .logo-text {
+        font-size: 1rem;
+    }
+
+    .btn-hire {
+        display: none;
+    }
+
+    .nav-links {
         position: fixed;
-        top: 100px;
-        left: 50%;
-        transform: translateX(-50%) translateY(-20px);
-        width: 90%;
+        top: 78px;
+        left: 16px;
+        right: 16px;
+        width: auto;
         background: #0d0d0d;
         flex-direction: column;
-        padding: 30px;
-        border-radius: 24px;
-        border: 1px solid rgba(57, 255, 20, 0.1);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        text-align: center;
-        gap: 10px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+        padding: 16px;
+        border-radius: 15px;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        display: none;
+        z-index: 1000;
     }
 
     .nav-links.active {
-        opacity: 1;
-        visibility: visible;
-        transform: translateX(-50%) translateY(0);
+        display: flex;
+    }
+
+    .nav-links li {
+        width: 100%;
     }
 
     .nav-links li a {
         display: block;
+        padding: 12px;
+        text-align: center;
+        border-radius: 8px;
+    }
+
+    /* Hero — Centered and stacked */
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 80px 16px 40px !important;
+        gap: 24px;
+        min-height: auto;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        justify-content: center;
+        align-items: center;
+        display: flex !important;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .badge {
+        font-size: 0.75rem;
+        margin-bottom: 1.5rem;
+        margin-left: auto;
+        margin-right: auto;
+        display: inline-flex;
+    }
+
+    h1 {
+        font-size: 2.2rem; /* Slightly smaller for mobile */
+        white-space: normal;
+        margin-bottom: 1rem;
+        word-wrap: break-word;
+        line-height: 1.2;
+        width: 100%;
+    }
+
+    .description {
+        font-size: 1rem;
+        margin: 0 auto 2rem;
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .cta-group {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+        width: 100%;
+        max-width: 320px;
+        margin-bottom: 2rem;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex !important;
+    }
+
+    .btn {
+        width: 100% !important;
+        max-width: 100% !important;
+        justify-content: center;
+        padding: 14px 24px;
+    }
+
+    .social-links {
+        margin-top: 16px;
+        justify-content: center;
+        width: 100%;
+        display: flex !important;
+    }
+
+    /* Terminal Fix */
+    .hero-visual {
+        flex: none;
+        width: 100%;
+        max-width: 100%;
+        justify-content: center;
+        margin-top: 24px;
+        display: flex !important;
+    }
+
+    .terminal-window {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        animation: none;
+        border-radius: 12px;
+    }
+
+    .terminal-body {
+        height: auto;
+        min-height: 200px;
         padding: 15px;
-        font-size: 1.1rem;
+        font-size: 0.85rem;
+    }
+
+    /* Global Fixes */
+    section {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        margin-bottom: 40px;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden;
+    }
+
+    .scroll-indicator, .gradient-light {
+        display: none !important;
+    }
+
+    .grid-background {
+        background-size: 30px 30px;
     }
 
     .menu-toggle {
@@ -604,26 +817,22 @@ h1 .highlight {
     }
 }
 
-@media (max-width: 768px) {
-    nav ul {
-        display: none;
-    }
-
+/* Extra small screens overrides */
+@media (max-width: 480px) {
     h1 {
-        font-size: 2.5rem;
-        white-space: normal;
-    }
-
-    .cta-group {
-        flex-direction: column;
+        font-size: 1.8rem;
     }
 
     .hero {
-        padding-top: 15%;
+        padding-top: 60px !important;
     }
 
-    .btn-hire {
-        padding: 8px 16px;
-        font-size: 0.8rem;
+    .description {
+        font-size: 0.9rem;
+    }
+
+    .nav-wrapper {
+        width: calc(100% - 24px);
+        margin: 0 12px;
     }
 }

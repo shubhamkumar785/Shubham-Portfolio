@@ -55,15 +55,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // FAQ Accordion logic
     const faqItems = document.querySelectorAll('.faq-item');
-    
+
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
         question.addEventListener('click', () => {
             const isActive = item.classList.contains('active');
-            
+
             // Close all items
             faqItems.forEach(i => i.classList.remove('active'));
-            
+
             // Toggle current
             if (!isActive) {
                 item.classList.add('active');
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         testimonialCards.forEach(card => {
             card.style.minWidth = `${testimonialCardWidth - (testimonialVisibleCards > 1 ? 20 : 0)}px`;
         });
-        
+
         // Re-align track
         moveTestimonialSlider();
     }
@@ -216,8 +216,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         currentSlide = index;
         const cardWidth = cards[0].getBoundingClientRect().width;
-        const gap = 30; // gap between cards
-        const amountToMove = index * (cardWidth * cardsPerView + gap * cardsPerView);
+        const isMobile = window.innerWidth <= 768;
+        const gap = isMobile ? 0 : 30; // gap between cards
+        const amountToMove = index * (cardWidth * cardsPerView + gap * (cardsPerView > 1 ? cardsPerView - 1 : 0));
 
         track.style.transform = `translateX(-${amountToMove}px)`;
         updateDots(index);

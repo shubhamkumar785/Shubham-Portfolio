@@ -2,7 +2,7 @@
 .contact {
     padding: 80px 8%;
     background: #0d0d0d;
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     position: relative;
@@ -152,12 +152,50 @@ textarea:focus {
 }
 
 /* Responsive */
+@media (max-width: 992px) {
+    .contact {
+        padding: 80px 5% 60px;
+        min-height: auto;
+    }
+}
+
 @media (max-width: 768px) {
-    .form-grid {
-        grid-template-columns: 1fr;
+    .contact {
+        padding: 60px 16px 40px; /* Consistent padding */
+        min-height: auto;
     }
 
-    .contact {
-        padding: 60px 5%;
+    .contact-header {
+        margin-bottom: 32px;
+    }
+
+    .contact-header h2 {
+        font-size: 2.2rem;
+    }
+
+    .contact-card {
+        padding: 30px 16px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    /* iOS zoom fix: inputs must be at least 16px to prevent auto-zoom */
+    input,
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
     }
 }
