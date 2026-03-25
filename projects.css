@@ -233,16 +233,6 @@
 
 @media (max-width: 992px) {
     .projects {
-        padding: 80px 5% 60px;
-    }
-
-    .projects-container {
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 768px) {
-    .projects {
         padding: 60px 16px 40px; /* Consistent padding */
     }
 

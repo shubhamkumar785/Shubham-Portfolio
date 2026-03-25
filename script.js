@@ -85,16 +85,19 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateTestimonialSliderConfig() {
         if (!testimonialTrack) return;
         const width = window.innerWidth;
-        const gap = width > 768 ? 40 : 0;
+        const gap = width > 992 ? 40 : 0;
         
         if (width > 992) testimonialVisibleCards = 2;
         else testimonialVisibleCards = 1;
 
-        const containerWidth = testimonialTrack.parentElement.offsetWidth;
+        // Use clientWidth for more precise content area calculation
+        const containerWidth = testimonialTrack.parentElement.clientWidth;
+        
         testimonialCardWidth = (containerWidth - (testimonialVisibleCards > 1 ? gap : 0)) / testimonialVisibleCards;
         
         testimonialCards.forEach(card => {
             card.style.minWidth = `${testimonialCardWidth}px`;
+            card.style.width = `${testimonialCardWidth}px`; // explicitly set width too
         });
 
         // Re-align track
@@ -124,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (testimonialIndex >= totalCards) testimonialIndex = 0;
         if (testimonialIndex < 0) testimonialIndex = totalCards - testimonialVisibleCards;
 
-        const gap = window.innerWidth > 768 ? 40 : 0;
+        const gap = window.innerWidth > 992 ? 40 : 0;
         const offset = testimonialIndex * (testimonialCardWidth + gap);
         testimonialTrack.style.transform = `translateX(-${offset}px)`;
         updateTestimonialDots();
@@ -155,12 +158,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Auto Scroll Every 5 Seconds
+    // Auto Scroll Every 2 Seconds
     let testimonialAutoScrollInterval = setInterval(() => {
         testimonialIndex += testimonialVisibleCards;
         if (testimonialIndex >= testimonialCards.length) testimonialIndex = 0;
         moveTestimonialSlider();
-    }, 5000);
+    }, 2000);
 
     function resetTestimonialAutoScroll() {
         clearInterval(testimonialAutoScrollInterval);
@@ -168,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
             testimonialIndex += testimonialVisibleCards;
             if (testimonialIndex >= testimonialCards.length) testimonialIndex = 0;
             moveTestimonialSlider();
-        }, 5000);
+        }, 2000);
     }
 
     // Pause on hover
@@ -188,6 +191,46 @@ document.addEventListener('DOMContentLoaded', () => {
         createTestimonialDots();
     }
 
+    // Services Auto-Slider (Mobile Only)
+    const servicesTrack = document.querySelector('.services-grid');
+    const servicesCards = document.querySelectorAll('.service-card');
+    let servicesIndex = 0;
+    let servicesInterval;
+
+    function startServicesAutoSlider() {
+        if (servicesInterval) clearInterval(servicesInterval);
+        servicesInterval = setInterval(() => {
+            if (window.innerWidth <= 992 && servicesTrack && servicesCards.length > 0) {
+                servicesIndex++;
+                if (servicesIndex >= servicesCards.length) servicesIndex = 0;
+                // Use the first card's width for the most reliable translation step
+                const cardWidth = servicesCards[0].offsetWidth;
+                servicesTrack.style.transform = `translateX(-${servicesIndex * cardWidth}px)`;
+            }
+        }, 2000);
+    }
+
+    function resetServicesSlider() {
+        if (servicesTrack && servicesCards.length > 0) {
+            if (window.innerWidth > 992) {
+                servicesTrack.style.transform = 'none';
+                servicesIndex = 0;
+            } else {
+                // Re-align if resized but still in mobile/tablet
+                const cardWidth = servicesCards[0].offsetWidth;
+                servicesTrack.style.transform = `translateX(-${servicesIndex * cardWidth}px)`;
+            }
+        }
+    }
+
+    if (servicesTrack) {
+        startServicesAutoSlider();
+        
+        // Pause on hover
+        servicesTrack.addEventListener('mouseenter', () => clearInterval(servicesInterval));
+        servicesTrack.addEventListener('mouseleave', () => startServicesAutoSlider());
+    }
+
     // Projects Slider Slider Logic
     const track = document.querySelector('.projects-track');
     const cards = Array.from(track.children);
@@ -196,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dotsNav = document.querySelector('.pagination-dots');
 
     let currentSlide = 0;
-    const cardsPerView = window.innerWidth > 1100 ? 3 : (window.innerWidth > 768 ? 2 : 1);
+    const cardsPerView = window.innerWidth > 1100 ? 3 : (window.innerWidth > 992 ? 2 : 1);
     const maxSlides = Math.ceil(cards.length / cardsPerView);
 
     // Create pagination dots
@@ -221,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         currentSlide = index;
         const cardWidth = cards[0].getBoundingClientRect().width;
-        const isMobile = window.innerWidth <= 768;
+        const isMobile = window.innerWidth <= 992;
         const gap = isMobile ? 0 : 30; // gap between cards
         const amountToMove = index * (cardWidth * cardsPerView + gap * (cardsPerView > 1 ? cardsPerView - 1 : 0));
 
@@ -239,16 +282,16 @@ document.addEventListener('DOMContentLoaded', () => {
         resetAutoScroll();
     });
 
-    // Auto Scroll Every 3 Seconds
+    // Auto Scroll Every 2 Seconds
     let autoScrollInterval = setInterval(() => {
         moveToSlide(currentSlide + 1);
-    }, 3000);
+    }, 2000);
 
     const resetAutoScroll = () => {
         clearInterval(autoScrollInterval);
         autoScrollInterval = setInterval(() => {
             moveToSlide(currentSlide + 1);
-        }, 3000);
+        }, 2000);
     };
 
     // Pause on hover
@@ -257,7 +300,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update on resize
     window.addEventListener('resize', () => {
-        const newCardsPerView = window.innerWidth > 1100 ? 3 : (window.innerWidth > 768 ? 2 : 1);
+        resetServicesSlider();
+        const newCardsPerView = window.innerWidth > 1100 ? 3 : (window.innerWidth > 992 ? 2 : 1);
         if (newCardsPerView !== cardsPerView) {
             location.reload(); // Simple reload for now as it's safer given the current structural implementation
         } else {
