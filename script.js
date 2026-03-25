@@ -85,12 +85,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateTestimonialSliderConfig() {
         if (!testimonialTrack) return;
         const width = window.innerWidth;
-        if (width > 992) testimonialVisibleCards = 2; // Increased size, showing 2 cards
+        const gap = width > 768 ? 40 : 0;
+        
+        if (width > 992) testimonialVisibleCards = 2;
         else testimonialVisibleCards = 1;
 
-        testimonialCardWidth = testimonialTrack.parentElement.offsetWidth / testimonialVisibleCards;
+        const containerWidth = testimonialTrack.parentElement.offsetWidth;
+        testimonialCardWidth = (containerWidth - (testimonialVisibleCards > 1 ? gap : 0)) / testimonialVisibleCards;
+        
         testimonialCards.forEach(card => {
-            card.style.minWidth = `${testimonialCardWidth - (testimonialVisibleCards > 1 ? 20 : 0)}px`;
+            card.style.minWidth = `${testimonialCardWidth}px`;
         });
 
         // Re-align track
@@ -120,7 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (testimonialIndex >= totalCards) testimonialIndex = 0;
         if (testimonialIndex < 0) testimonialIndex = totalCards - testimonialVisibleCards;
 
-        const offset = testimonialIndex * (testimonialCardWidth);
+        const gap = window.innerWidth > 768 ? 40 : 0;
+        const offset = testimonialIndex * (testimonialCardWidth + gap);
         testimonialTrack.style.transform = `translateX(-${offset}px)`;
         updateTestimonialDots();
     }
@@ -150,12 +155,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Auto Scroll Every 2 Seconds
+    // Auto Scroll Every 5 Seconds
     let testimonialAutoScrollInterval = setInterval(() => {
         testimonialIndex += testimonialVisibleCards;
         if (testimonialIndex >= testimonialCards.length) testimonialIndex = 0;
         moveTestimonialSlider();
-    }, 2000);
+    }, 5000);
 
     function resetTestimonialAutoScroll() {
         clearInterval(testimonialAutoScrollInterval);
@@ -163,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
             testimonialIndex += testimonialVisibleCards;
             if (testimonialIndex >= testimonialCards.length) testimonialIndex = 0;
             moveTestimonialSlider();
-        }, 2000);
+        }, 5000);
     }
 
     // Pause on hover
@@ -259,4 +264,79 @@ document.addEventListener('DOMContentLoaded', () => {
             moveToSlide(currentSlide);
         }
     });
+
+    // Contact Form Submission
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Change button state
+            const submitBtn = contactForm.querySelector('.btn-send');
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.innerText = 'Sending...';
+            submitBtn.disabled = true;
+
+            // Hide previous status
+            formStatus.style.display = 'none';
+            formStatus.className = 'form-status';
+
+            const formData = new FormData(contactForm);
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbz-a7wB3BvXrIxdQ6CJg5m5ICfXA6GbQXv0QUtS_REWTp7RhEbe4graXQg6Jo2uMrFw/exec';
+
+            try {
+                // Try standard fetch first
+                const response = await fetch(scriptURL, { 
+                    method: 'POST', 
+                    body: formData,
+                    mode: 'cors' // Explicitly try CORS first
+                });
+
+                if (response.ok || response.type === 'opaque') {
+                    formStatus.innerText = 'Message sent successfully!';
+                    formStatus.classList.add('success');
+                    contactForm.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                // Fallback for CORS issues - Google Apps Script often needs this
+                try {
+                    await fetch(scriptURL, { 
+                        method: 'POST', 
+                        body: formData,
+                        mode: 'no-cors' 
+                    });
+                    formStatus.innerText = 'Message sent successfully!';
+                    formStatus.classList.add('success');
+                    contactForm.reset();
+                } catch (innerError) {
+                    console.error('Error!', error.message);
+                    formStatus.innerText = 'Error sending message. Please check your internet or script settings.';
+                    formStatus.classList.add('error');
+                }
+            } finally {
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
+                formStatus.style.display = 'block';
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    formStatus.style.display = 'none';
+                }, 5000);
+            }
+        });
+    }
+
+    // Reset button functionality
+    const resetBtn = document.querySelector('.btn-reset');
+    if (resetBtn && contactForm) {
+        resetBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            contactForm.reset();
+            formStatus.style.display = 'none';
+        });
+    }
 });

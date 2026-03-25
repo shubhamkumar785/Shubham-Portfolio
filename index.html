@@ -65,11 +65,11 @@
             <nav class="navbar">
                 <div class="logo">
                     <div class="logo-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="24" height="24" rx="6" fill="#39FF14" />
                             <path d="M7 12L10 9M7 12L10 15M7 12H17M17 12L14 9M17 12L14 15" stroke="black"
                                 stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
+                        </svg> -->
                     </div>
                     <span class="logo-text">Shubham</span>
                 </div>
@@ -851,40 +851,42 @@
                         <h3>Let's Work Together</h3>
                         <p>Hi, I'm Shubham! Fill out the form below to collaborate on your next project.</p>
 
-                        <form>
+                        <form id="contact-form">
                             <div class="form-grid">
 
                                 <div class="form-group">
                                     <label for="first-name">First Name</label>
-                                    <input type="text" id="first-name" placeholder="John" required>
+                                    <input type="text" id="first-name" name="first_name" placeholder="John" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="last-name">Last Name</label>
-                                    <input type="text" id="last-name" placeholder="Doe" required>
+                                    <input type="text" id="last-name" name="last_name" placeholder="Doe" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" id="email" placeholder="john@example.com" required>
+                                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="phone">Phone</label>
-                                    <input type="text" id="phone" placeholder="+91 XXXXXXXX">
+                                    <input type="text" id="phone" name="phone" placeholder="+91 XXXXXXXX">
                                 </div>
 
                             </div>
 
                             <div class="form-group full">
                                 <label for="message">Your Message</label>
-                                <textarea id="message" rows="5" placeholder="Type your message..." required></textarea>
+                                <textarea id="message" name="message" rows="5" placeholder="Type your message..."
+                                    required></textarea>
                             </div>
 
                             <div class="form-buttons">
                                 <button class="btn btn-send">Send</button>
                                 <button class="btn btn-reset">Reset</button>
                             </div>
+                            <div id="form-status" class="form-status"></div>
                         </form>
                     </div>
                 </div>
@@ -1016,7 +1018,7 @@
                 <div class="footer-bottom">
                     <div class="footer-divider"></div>
                     <div class="bottom-content">
-                        <p class="copyright">&copy; 2026 Shubham Pathak. All rights reserved.</p>
+                        <p class="copyright">&copy; 2025 Shubham Kumar. All rights reserved.</p>
                         <div class="bottom-links">
                             <a href="#">Privacy Policy</a>
                             <a href="#">Terms of Service</a>
