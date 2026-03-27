@@ -328,48 +328,54 @@ document.addEventListener('DOMContentLoaded', () => {
             formStatus.className = 'form-status';
 
             const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Destinations
             const scriptURL = 'https://script.google.com/macros/s/AKfycbz-a7wB3BvXrIxdQ6CJg5m5ICfXA6GbQXv0QUtS_REWTp7RhEbe4graXQg6Jo2uMrFw/exec';
+            const emailURL = 'https://formsubmit.co/ajax/shubhammpathak566@gmail.com';
 
             try {
-                // Try standard fetch first
-                const response = await fetch(scriptURL, { 
-                    method: 'POST', 
-                    body: formData,
-                    mode: 'cors' // Explicitly try CORS first
-                });
+                // Send to both destinations concurrently
+                const results = await Promise.allSettled([
+                    // 1. Google Sheets (Existing)
+                    fetch(scriptURL, { method: 'POST', body: formData, mode: 'no-cors' }),
+                    
+                    // 2. Email Notification (New)
+                    fetch(emailURL, {
+                        method: 'POST',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                ]);
 
-                if (response.ok || response.type === 'opaque') {
-                    formStatus.innerText = 'Message sent successfully!';
+                // Check if any attempt was at least visually successful
+                const isSuccessful = results.some(res => 
+                    res.status === 'fulfilled' && (res.value.ok || res.value.type === 'opaque')
+                );
+
+                if (isSuccessful) {
+                    formStatus.innerText = 'Message sent! Check Gmail for activation (first time).';
                     formStatus.classList.add('success');
                     contactForm.reset();
                 } else {
-                    throw new Error('Form submission failed');
+                    throw new Error('All submission attempts failed');
                 }
             } catch (error) {
-                // Fallback for CORS issues - Google Apps Script often needs this
-                try {
-                    await fetch(scriptURL, { 
-                        method: 'POST', 
-                        body: formData,
-                        mode: 'no-cors' 
-                    });
-                    formStatus.innerText = 'Message sent successfully!';
-                    formStatus.classList.add('success');
-                    contactForm.reset();
-                } catch (innerError) {
-                    console.error('Error!', error.message);
-                    formStatus.innerText = 'Error sending message. Please check your internet or script settings.';
-                    formStatus.classList.add('error');
-                }
+                console.error('Submission Error:', error);
+                formStatus.innerText = 'Error sending message. Please try again or email directly.';
+                formStatus.classList.add('error');
             } finally {
                 submitBtn.innerText = originalBtnText;
                 submitBtn.disabled = false;
                 formStatus.style.display = 'block';
                 
-                // Hide message after 5 seconds
+                // Hide message after 8 seconds
                 setTimeout(() => {
                     formStatus.style.display = 'none';
-                }, 5000);
+                }, 8000);
             }
         });
     }
@@ -381,6 +387,95 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             contactForm.reset();
             formStatus.style.display = 'none';
+        });
+    }
+
+    // Chatbot Functionality
+    const chatbotTrigger = document.getElementById('chatbot-trigger');
+    const chatbotWindow = document.getElementById('chatbot-window');
+    const closeChatbot = document.getElementById('close-chatbot');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+    const chatbotInput = document.getElementById('chatbot-input');
+    const sendMsg = document.getElementById('send-msg');
+    const optionBtns = document.querySelectorAll('.option-btn');
+
+    const responses = {
+        skills: "Shubham specializes in Java, Spring Boot, Microservices, and Cloud Engineering (AWS). He also has a strong foundation in SQL, NoSQL, and System Design.",
+        projects: "Some of Shubham's featured projects include CampusSetu (Smart Campus Management), a scalable E-Commerce platform, and an AI Chat Assistant. Check the Projects section for details!",
+        contact: "You can reach Shubham at shubhammpathak566@gmail.com or call +91 7858024086. You can also use the form in the Contact section!",
+        resume: "You can download Shubham's resume directly from the Hero section or by clicking the 'Download Resume' button in the chat menu.",
+        default: "I'm not sure about that, but I can tell you about Shubham's skills, projects, or how to contact him. Choose an option above!"
+    };
+
+    function addMessage(text, sender) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `message ${sender}`;
+        msgDiv.innerText = text;
+        chatbotMessages.appendChild(msgDiv);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    if (chatbotTrigger) {
+        chatbotTrigger.addEventListener('click', () => {
+            chatbotWindow.classList.toggle('active');
+            const tooltip = chatbotTrigger.querySelector('.chatbot-tooltip');
+            if (tooltip) {
+                tooltip.style.display = chatbotWindow.classList.contains('active') ? 'none' : 'block';
+            }
+        });
+    }
+
+    if (closeChatbot) {
+        closeChatbot.addEventListener('click', () => {
+            chatbotWindow.classList.remove('active');
+            const tooltip = chatbotTrigger.querySelector('.chatbot-tooltip');
+            if (tooltip) tooltip.style.display = 'block';
+        });
+    }
+
+    optionBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const type = btn.getAttribute('data-type');
+            addMessage(btn.innerText, 'user');
+            
+            setTimeout(() => {
+                addMessage(responses[type] || responses.default, 'bot');
+            }, 500);
+        });
+    });
+
+    function handleSend() {
+        const text = chatbotInput.value.trim();
+        if (text) {
+            addMessage(text, 'user');
+            chatbotInput.value = '';
+            
+            setTimeout(() => {
+                const lowerText = text.toLowerCase();
+                let foundResponse = false;
+                
+                for (const key in responses) {
+                    if (lowerText.includes(key)) {
+                        addMessage(responses[key], 'bot');
+                        foundResponse = true;
+                        break;
+                    }
+                }
+                
+                if (!foundResponse) {
+                    addMessage(responses.default, 'bot');
+                }
+            }, 800);
+        }
+    }
+
+    if (sendMsg) {
+        sendMsg.addEventListener('click', handleSend);
+    }
+
+    if (chatbotInput) {
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSend();
         });
     }
 });
